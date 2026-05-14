@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project page for Unlocking Complex Visual Generation via Closed-Loop Verified Reasoning.">
+  <title>CLVR | Closed-Loop Verified Reasoning</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --bg-soft: #101c30;
+      --card: rgba(255, 255, 255, 0.075);
+      --card-strong: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.16);
+      --text: #f5f7fb;
+      --muted: #b8c3d9;
+      --faint: #7e8aa5;
+      --accent: #8b7cff;
+      --accent-2: #39d5c6;
+      --accent-3: #ffc86b;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(139, 124, 255, 0.35), transparent 32rem),
+        radial-gradient(circle at 90% 10%, rgba(57, 213, 198, 0.22), transparent 28rem),
+        linear-gradient(180deg, #07101d 0%, #0a1322 46%, #f4f7fb 46%, #f4f7fb 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 17, 31, 0.76);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #07101d;
+      box-shadow: 0 10px 30px rgba(57, 213, 198, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 88px 0 62px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.86rem;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 6px rgba(57, 213, 198, 0.14);
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 6.25rem);
+      line-height: 0.94;
+      letter-spacing: -0.08em;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .button.primary {
+      color: #07101d;
+      border: 0;
+      background: linear-gradient(135deg, #ffffff, #cae8ff);
+    }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 48px;
+    }
+
+    .stat {
+      padding: 20px;
+      min-height: 136px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1;
+      letter-spacing: -0.07em;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hero-gallery {
+      overflow: hidden;
+      margin-top: 46px;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-gallery-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-gallery-head p {
+      margin: 0;
+      max-width: 460px;
+      color: var(--muted);
+    }
+
+    .figure-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-gallery h2 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(1.65rem, 3vw, 2.45rem);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+    }
+
+    .figure-strip-wrap {
+      overflow: hidden;
+      background: #101827;
+    }
+
+    .figure-strip {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .figure-strip img {
+      flex: 1 1 0;
+      min-width: 0;
+      width: 0;
+      height: auto;
+      display: block;
+      vertical-align: bottom;
+    }
+
+    .figure-strip img + img {
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .figure-strip-caption {
+      margin: 0;
+      padding: 10px 18px 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    main {
+      color: #111827;
+      background: #f4f7fb;
+    }
+
+    section {
+      padding: 74px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: #635bff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 760px;
+      color: #0b1220;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+    }
+
+    .section-copy {
+      max-width: 420px;
+      margin: 0;
+      color: #5e6a7f;
+      font-size: 1rem;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .insight-card,
+    .result-card,
+    .method-card {
+      border: 1px solid #dfe5ef;
+      border-radius: 26px;
+      background: #ffffff;
+      box-shadow: 0 14px 48px rgba(15, 23, 42, 0.08);
+    }
+
+    .insight-card {
+      padding: 24px;
+      min-height: 230px;
+    }
+
+    .number {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 38px;
+      border-radius: 12px;
+      color: #fff;
+      background: #0b1220;
+      font-weight: 900;
+    }
+
+    h3 {
+      margin: 0;
+      color: #0b1220;
+      font-size: 1.22rem;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    p {
+      color: #5e6a7f;
+    }
+
+    .gallery-panel {
+      overflow: hidden;
+      border: 1px solid #dfe5ef;
+      border-radius: 34px;
+      background: #ffffff;
+      box-shadow: 0 28px 90px rgba(15, 23, 42, 0.1);
+    }
+
+    .gallery-panel img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #101827;
+    }
+
+    .gallery-panel > .gallery-note:first-child {
+      border-top: 0;
+      padding-top: 22px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 11px;
+      border-radius: 999px;
+      color: #354055;
+      background: #edf2f8;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .method-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      position: relative;
+    }
+
+    .method-card {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      min-height: 270px;
+    }
+
+    .method-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .method-card .label {
+      color: #635bff;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .method-card p {
+      margin-bottom: 0;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .result-card {
+      padding: 24px;
+    }
+
+    .result-card.wide {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .metric {
+      margin: 0;
+      color: #0b1220;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.08em;
+      font-weight: 900;
+    }
+
+    .metric small {
+      color: #8792a7;
+      font-size: 0.34em;
+      letter-spacing: -0.03em;
+    }
+
+    .comparison {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 110px 1fr 52px;
+      align-items: center;
+      gap: 10px;
+      color: #42506a;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .bar-track {
+      overflow: hidden;
+      height: 10px;
+      border-radius: 999px;
+      background: #edf2f8;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #635bff, #39d5c6);
+    }
+
+    .table-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .table-card {
+      overflow: hidden;
+      border: 1px solid #dfe5ef;
+      border-radius: 26px;
+      background: #ffffff;
+      box-shadow: 0 14px 48px rgba(15, 23, 42, 0.08);
+    }
+
+    .table-card-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 22px 24px;
+      border-bottom: 1px solid #e8edf5;
+    }
+
+    .table-card-head p {
+      margin: 0;
+      max-width: 470px;
+      font-size: 0.95rem;
+    }
+
+    .table-card h3 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 13px 16px;
+      text-align: right;
+      border-bottom: 1px solid #eef2f7;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    th {
+      color: #5e6a7f;
+      background: #f7f9fc;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr.highlight td {
+      color: #0b1220;
+      background: #f7fbff;
+      font-weight: 900;
+    }
+
+    .delta {
+      color: #16887d;
+      font-weight: 900;
+    }
+
+    .note-cell {
+      max-width: 330px;
+      text-align: left;
+      white-space: normal;
+      color: #5e6a7f;
+    }
+
+    .paper-figure-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .paper-figure-card {
+      overflow: hidden;
+      border: 1px solid #dfe5ef;
+      border-radius: 28px;
+      background: #ffffff;
+      box-shadow: 0 14px 48px rgba(15, 23, 42, 0.08);
+    }
+
+    .paper-figure-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .paper-figure-media {
+      overflow: hidden;
+      height: 520px;
+      border-bottom: 1px solid #e8edf5;
+      background: #f8fafc;
+    }
+
+    .paper-figure-card.wide .paper-figure-media {
+      height: 620px;
+    }
+
+    .paper-figure-media img,
+    .paper-figure-media object {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #ffffff;
+    }
+
+    .paper-figure-media img {
+      object-fit: contain;
+      padding: 18px;
+    }
+
+    .paper-figure-body {
+      padding: 20px 22px 22px;
+    }
+
+    .paper-figure-body h3 {
+      margin-bottom: 8px;
+    }
+
+    .paper-figure-body p {
+      margin: 0;
+    }
+
+    .figure-link {
+      display: inline-flex;
+      margin-top: 14px;
+      color: #635bff;
+      font-weight: 800;
+    }
+
+    .takeaway {
+      padding: 34px;
+      border-radius: 34px;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(255, 200, 107, 0.18), transparent 24rem),
+        linear-gradient(135deg, #0b1220, #14233c);
+      box-shadow: var(--shadow);
+    }
+
+    .takeaway h2,
+    .takeaway h3,
+    .takeaway p {
+      color: inherit;
+    }
+
+    .takeaway p {
+      max-width: 790px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .takeaway-item {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    footer {
+      padding: 36px 0 52px;
+      color: #64748b;
+      background: #f4f7fb;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 980px) {
+      .quick-stats,
+      .insight-grid,
+      .method-flow,
+      .results-grid,
+      .takeaway-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .result-card.wide {
+        grid-column: span 2;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-gallery-head {
+        display: block;
+      }
+
+      .hero-gallery-head p {
+        margin-top: 10px;
+      }
+
+      .table-card-head {
+        display: block;
+      }
+
+      .table-card-head p {
+        margin-top: 8px;
+      }
+
+      .paper-figure-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-figure-card.wide {
+        grid-column: span 1;
+      }
+
+      .figure-strip-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .figure-strip {
+        min-width: 720px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 28px, 1120px);
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+        gap: 10px;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .quick-stats,
+      .insight-grid,
+      .method-flow,
+      .results-grid,
+      .takeaway-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-card.wide {
+        grid-column: span 1;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-copy {
+        margin-top: 14px;
+      }
+
+      .paper-figure-media,
+      .paper-figure-card.wide .paper-figure-media {
+        height: 440px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="CLVR project page">
+        <span class="brand-mark">C</span>
+        <span>CLVR</span>
+      </a>
+      <div class="nav-links">
+        <a href="#insights">Key Takeaways</a>
+        <a href="#figure1">Figure 1</a>
+        <a href="#method">Method</a>
+        <a href="#paper-figures">Paper Figures</a>
+        <a href="#results">Results</a>
+      </div>
+    </nav>
+  </header>
+
+  <div id="top" class="hero">
+    <div class="shell">
+      <h1>Unlocking Complex Visual Generation via Closed-Loop Verified Reasoning</h1>
+      <p class="lead">
+        CLVR turns complex text-to-image generation into an iterative visual reasoning loop:
+        plan, generate, verify, correct, and stop when the image satisfies the prompt.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#results">Scan the Evidence</a>
+        <a class="button" href="#method">How It Works</a>
+      </div>
+
+      <figure id="figure1" class="hero-gallery" aria-label="Paper Figure 1 qualitative results">
+        <div class="hero-gallery-head">
+          <figcaption>
+            <span class="figure-label">Figure 1 · Qualitative Results</span>
+            <h2>CLVR handles dense PRISM prompts with iterative visual reasoning.</h2>
+          </figcaption>
+          <p>
+            <!-- The first figure is kept near the top because it communicates the paper's central promise faster than text:
+            complex prompts become controllable through verified multi-step generation. -->
+          </p>
+        </div>
+        <div class="figure-strip-wrap">
+          <div class="figure-strip">
+            <img src="assets/show_gallery/prismbench_style_gallery.jpg" alt="PRISM qualitative panel A">
+            <img src="assets/show_gallery/prismbench_style_v04.jpg" alt="PRISM qualitative panel B">
+            <img src="assets/show_gallery/prismbench_style_v08.jpg" alt="PRISM qualitative panel C">
+          </div>
+          <p class="figure-strip-caption">PRISM qualitative results, stitched left to right: panel A · panel B · panel C.</p>
+        </div>
+      </figure>
+
+      <div class="quick-stats" aria-label="Headline metrics">
+        <div class="stat">
+          <strong>0.88</strong>
+          <span>GenEval overall pass score with CLVR 9B.</span>
+        </div>
+        <div class="stat">
+          <strong>82.1</strong>
+          <span>PRISM overall score, above the strongest open-source baseline in the paper.</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong>
+          <span>NFEs per diffusion step after &Delta;-Space Weight Merge.</span>
+        </div>
+        <div class="stat">
+          <strong>11&times;</strong>
+          <span>Speedup for common two-iteration trajectories: 287.0s to 25.5s.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section id="insights">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Key Takeaways</p>
+            <h2>Read the paper in one minute.</h2>
+          </div>
+          <p class="section-copy">
+            The page intentionally keeps only the claims a reader should remember after a fast skim.
+          </p>
+        </div>
+
+        <div class="insight-grid">
+          <article class="insight-card">
+            <div class="number">1</div>
+            <h3>Single-step generation hits a complexity ceiling.</h3>
+            <p>As prompts become dense with entities, relations, and constraints, simply scaling the backbone gives diminishing returns.</p>
+          </article>
+          <article class="insight-card">
+            <div class="number">2</div>
+            <h3>Closed-loop reasoning breaks hard prompts into recoverable steps.</h3>
+            <p>CLVR uses visual feedback after each generation action, so errors can be detected and corrected before they cascade.</p>
+          </article>
+          <article class="insight-card">
+            <div class="number">3</div>
+            <h3>Proxy prompts make long-context RL trainable.</h3>
+            <p>PPRL distills messy multimodal histories into explicit step-level reward targets for more stable diffusion alignment.</p>
+          </article>
+          <article class="insight-card">
+            <div class="number">4</div>
+            <h3>Weight merging makes the system deployable.</h3>
+            <p>DSWM reuses distillation priors instead of re-distilling costly reasoning trajectories, reducing each step to 4 NFEs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="showcase">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Figure 1</p>
+            <h2>What to look for in the qualitative strip.</h2>
+          </div>
+          <p class="section-copy">
+            The gallery appears once at the top of the page. Use the navigation link &ldquo;Figure 1&rdquo; to jump back when needed.
+          </p>
+        </div>
+
+        <div class="gallery-panel">
+          <div class="gallery-note">
+            <span>Figure 1 emphasizes complex prompts, multiple constraints, and iterative refinement rather than isolated image quality.</span>
+            <div class="tag-row" aria-label="Qualitative strengths">
+              <span class="tag">Attribute binding</span>
+              <span class="tag">Spatial relations</span>
+              <span class="tag">Text rendering</span>
+              <span class="tag">Self-correction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Method</p>
+            <h2>The system is organized around four compact ideas.</h2>
+          </div>
+          <p class="section-copy">
+            Each component exists to remove a specific bottleneck in reasoning-based image generation.
+          </p>
+        </div>
+
+        <div class="method-flow">
+          <article class="method-card">
+            <p class="label">Data</p>
+            <h3>Verified trajectory synthesis</h3>
+            <p>A state-constrained controller generates visual reasoning trajectories, with step-level validation and global A/B judging against single-step baselines.</p>
+          </article>
+          <article class="method-card">
+            <p class="label">Training</p>
+            <h3>Proxy Prompt RL</h3>
+            <p>A teacher VLM converts long interleaved histories into explicit text and reference-image rewards, enabling step-wise diffusion optimization.</p>
+          </article>
+          <article class="method-card">
+            <p class="label">Inference</p>
+            <h3>Trajectory-accumulative conditioning</h3>
+            <p>The diffusion model receives the evolving reasoning trace, preserving global constraints across multiple rounds of generation and editing.</p>
+          </article>
+          <article class="method-card">
+            <p class="label">Deployment</p>
+            <h3>&Delta;-Space Weight Merge</h3>
+            <p>Alignment and distillation increments are merged in weight space, keeping reasoning ability while inheriting fast 4-step decoding.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="paper-figures">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Paper Figures</p>
+            <h2>Original figures reused from the paper.</h2>
+          </div>
+          <p class="section-copy">
+            These panels are not redrawn for the webpage. They directly reuse the figures included in the LaTeX manuscript.
+          </p>
+        </div>
+
+        <div class="paper-figure-grid">
+          <article class="paper-figure-card wide">
+            <div class="paper-figure-media">
+              <img src="assets/figures/overall_pipeline_draft4.png" alt="CLVR framework overview">
+            </div>
+            <div class="paper-figure-body">
+              <h3>CLVR framework overview</h3>
+              <p>Pipeline overview covering SFT/PPRL, closed-loop inference, and &Delta;-Space Weight Merge.</p>
+              <a class="figure-link" href="assets/figures/overall_pipeline_draft4.pdf">Open figure</a>
+            </div>
+          </article>
+
+          <article class="paper-figure-card">
+            <div class="paper-figure-media">
+              <img src="assets/figures/datapipeline_2_simple.png" alt="CLVR data synthesis pipeline">
+            </div>
+            <div class="paper-figure-body">
+              <h3>Verified data production</h3>
+              <p>Perceive-Reason-Act data synthesis with step-level visual verification.</p>
+              <a class="figure-link" href="assets/figures/datapipeline_2_simple.pdf">Open figure</a>
+            </div>
+          </article>
+
+          <article class="paper-figure-card">
+            <div class="paper-figure-media">
+              <img src="assets/figures/trace_showcase.png" alt="Training trajectory showcase">
+            </div>
+            <div class="paper-figure-body">
+              <h3>Trajectory data showcase</h3>
+              <p>Example synthesized trajectory showing visual feedback and self-correction.</p>
+              <a class="figure-link" href="assets/figures/trace_showcase.pdf">Open figure</a>
+            </div>
+          </article>
+
+          <article class="paper-figure-card wide">
+            <div class="paper-figure-media">
+              <img src="assets/figures/CoT_case_2.png" alt="Step-by-step CLVR inference case">
+            </div>
+            <div class="paper-figure-body">
+              <h3>Step-by-step inference trajectory</h3>
+              <p>CLVR inference case from concept initialization through environment, lighting, and final typographic integration.</p>
+              <a class="figure-link" href="assets/figures/CoT_case_2.pdf">Open figure</a>
+            </div>
+          </article>
+
+          <article class="paper-figure-card">
+            <div class="paper-figure-media">
+              <img src="assets/figures/compare_w_baseline.png" alt="CLVR comparison with baselines">
+            </div>
+            <div class="paper-figure-body">
+              <h3>Visual comparison with baselines</h3>
+              <p>Qualitative comparison against strong generation baselines on challenging prompts.</p>
+              <a class="figure-link" href="assets/figures/compare_w_baseline.pdf">Open figure</a>
+            </div>
+          </article>
+
+          <article class="paper-figure-card">
+            <div class="paper-figure-media">
+              <img src="assets/figures/fig_bc_v9_combined.png" alt="Semantic complexity scaling probe results">
+            </div>
+            <div class="paper-figure-body">
+              <h3>Semantic complexity scaling probe</h3>
+              <p>Probe figure showing AUC pass and tier-wise degradation under increasing task complexity.</p>
+              <a class="figure-link" href="assets/figures/fig_bc_v9_combined.png">Open figure</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Results</p>
+            <h2>CLVR improves quality, robustness, and latency together.</h2>
+          </div>
+          <p class="section-copy">
+            Selected headline numbers from GenEval, WiseBench, PRISM, ImagineBench, and the semantic complexity probe.
+          </p>
+        </div>
+
+        <div class="table-stack">
+          <article class="table-card">
+            <div class="table-card-head">
+              <h3>Main benchmark comparison</h3>
+              <p>Overall scores across the paper's core benchmarks. Higher is better.</p>
+            </div>
+            <div class="table-wrap">
+              <table aria-label="Main benchmark comparison">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>GenEval</th>
+                    <th>WiseBench</th>
+                    <th>PRISM</th>
+                    <th>ImagineBench</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>FLUX.2 4B base</td>
+                    <td>0.74</td>
+                    <td>0.44</td>
+                    <td>65.7</td>
+                    <td>6.267</td>
+                  </tr>
+                  <tr class="highlight">
+                    <td>CLVR 4B</td>
+                    <td>0.87 <span class="delta">(+0.13)</span></td>
+                    <td>0.74 <span class="delta">(+0.30)</span></td>
+                    <td>76.3 <span class="delta">(+10.6)</span></td>
+                    <td>8.435 <span class="delta">(+2.168)</span></td>
+                  </tr>
+                  <tr>
+                    <td>FLUX.2 9B base</td>
+                    <td>0.80</td>
+                    <td>0.52</td>
+                    <td>72.7</td>
+                    <td>7.274</td>
+                  </tr>
+                  <tr class="highlight">
+                    <td>CLVR 9B</td>
+                    <td>0.88 <span class="delta">(+0.08)</span></td>
+                    <td>0.76 <span class="delta">(+0.24)</span></td>
+                    <td>82.1 <span class="delta">(+9.4)</span></td>
+                    <td>8.830 <span class="delta">(+1.556)</span></td>
+                  </tr>
+                  <tr>
+                    <td>GPT-4o reference</td>
+                    <td>0.84</td>
+                    <td>0.80</td>
+                    <td>86.3</td>
+                    <td>8.560</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="table-card">
+            <div class="table-card-head">
+              <h3>Ablation: what contributes to the gain?</h3>
+              <p>GenEval ablation isolates closed-loop training, proxy-prompt RL, and DSWM deployment acceleration.</p>
+            </div>
+            <div class="table-wrap">
+              <table aria-label="Ablation comparison">
+                <thead>
+                  <tr>
+                    <th>Setting</th>
+                    <th>Counting</th>
+                    <th>Position</th>
+                    <th>Color Attr.</th>
+                    <th>Overall</th>
+                    <th>Takeaway</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>FLUX.2 4B base</td>
+                    <td>0.62</td>
+                    <td>0.52</td>
+                    <td>0.59</td>
+                    <td>0.74</td>
+                    <td class="note-cell">Single-step baseline.</td>
+                  </tr>
+                  <tr>
+                    <td>+ CLVR without PPRL</td>
+                    <td>0.76</td>
+                    <td>0.71</td>
+                    <td>0.57</td>
+                    <td>0.78</td>
+                    <td class="note-cell">Closed-loop decomposition already improves hard spatial/counting cases.</td>
+                  </tr>
+                  <tr>
+                    <td>+ CLVR with PPRL</td>
+                    <td>0.75</td>
+                    <td>0.74</td>
+                    <td>0.72</td>
+                    <td>0.83</td>
+                    <td class="note-cell">Proxy prompts stabilize long-context alignment.</td>
+                  </tr>
+                  <tr class="highlight">
+                    <td>+ CLVR + PPRL + DSWM</td>
+                    <td>0.85</td>
+                    <td>0.85</td>
+                    <td>0.71</td>
+                    <td>0.87</td>
+                    <td class="note-cell">Reasoning alignment and distillation priors merge without destructive interference.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="table-card">
+            <div class="table-card-head">
+              <h3>Semantic complexity scaling probe</h3>
+              <p>CLVR raises pass-complexity AUC without increasing the FLUX.2 4B backbone capacity proxy.</p>
+            </div>
+            <div class="table-wrap">
+              <table aria-label="Semantic complexity scaling probe">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>DiT Params</th>
+                    <th>I_eff</th>
+                    <th>Pass</th>
+                    <th>Median C_task</th>
+                    <th>AUC Pass</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>SD3.5-Med</td>
+                    <td>2.5B</td>
+                    <td>604.11</td>
+                    <td>0.244</td>
+                    <td>28.46</td>
+                    <td>42.53</td>
+                  </tr>
+                  <tr>
+                    <td>SD3.5-Lrg</td>
+                    <td>8.0B</td>
+                    <td>977.86</td>
+                    <td>0.288</td>
+                    <td>34.65</td>
+                    <td>53.79</td>
+                  </tr>
+                  <tr>
+                    <td>CogView4</td>
+                    <td>6.0B</td>
+                    <td>1411.05</td>
+                    <td>0.352</td>
+                    <td>50.54</td>
+                    <td>70.83</td>
+                  </tr>
+                  <tr>
+                    <td>FLUX.2 base</td>
+                    <td>4.0B</td>
+                    <td>1586.36</td>
+                    <td>0.372</td>
+                    <td>50.32</td>
+                    <td>73.89</td>
+                  </tr>
+                  <tr class="highlight">
+                    <td>CLVR (FLUX.2)</td>
+                    <td>4.0B</td>
+                    <td>1586.36</td>
+                    <td>0.451</td>
+                    <td>53.76</td>
+                    <td>98.79 <span class="delta">(+24.90)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="table-card">
+            <div class="table-card-head">
+              <h3>Inference efficiency with DSWM</h3>
+              <p>
+                Average end-to-end wall-clock time in seconds (same iteration count). Speedup is simply Base &divide; DSWM.
+                All rows use the same definition; none is visually emphasized as &ldquo;the main result&rdquo;.
+              </p>
+            </div>
+            <div class="table-wrap">
+              <table class="table-efficiency" aria-label="Inference efficiency with DSWM">
+                <thead>
+                  <tr>
+                    <th>Iterations</th>
+                    <th>Base 28-step</th>
+                    <th>DSWM 4-step</th>
+                    <th>Speedup</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>192.4s</td>
+                    <td>12.6s</td>
+                    <td>15.3&times;</td>
+                    <td class="note-cell">Fast enough for simple prompts.</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>287.0s</td>
+                    <td>25.5s</td>
+                    <td>11.3&times;</td>
+                    <td class="note-cell">Most common GenEval trajectory length.</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>471.7s</td>
+                    <td>38.2s</td>
+                    <td>12.3&times;</td>
+                    <td class="note-cell">Common for harder PRISM prompts.</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>707.7s</td>
+                    <td>52.3s</td>
+                    <td>13.5&times;</td>
+                    <td class="note-cell">Keeps long reasoning loops practical.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="takeaway">
+          <p class="kicker">Bottom Line</p>
+          <h2>Complex visual generation benefits from reasoning only when the loop is verified, trainable, and fast.</h2>
+          <p>
+            CLVR makes that loop practical: verified data keeps plans grounded, PPRL gives long-context rewards a stable target,
+            and DSWM preserves deployment speed without expensive reasoning-data re-distillation.
+          </p>
+          <div class="takeaway-grid">
+            <div class="takeaway-item">
+              <h3>Best use case</h3>
+              <p>Prompts with many entities, relations, attributes, text, or world-knowledge constraints.</p>
+            </div>
+            <div class="takeaway-item">
+              <h3>Main empirical claim</h3>
+              <p>CLVR consistently improves over its FLUX.2 base and narrows the gap to proprietary models.</p>
+            </div>
+            <div class="takeaway-item">
+              <h3>Practical claim</h3>
+              <p>Closed-loop reasoning can be accelerated to a deployable regime via 4-step DSWM decoding.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      Project page for <strong>Unlocking Complex Visual Generation via Closed-Loop Verified Reasoning</strong>.
+      Built as a static single-file page for GitHub Pages deployment.
+    </div>
+  </footer>
+</body>
+</html>
