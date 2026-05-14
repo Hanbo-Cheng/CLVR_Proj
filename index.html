@@ -28,6 +28,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 76px;
     }
 
     body {
@@ -99,7 +100,21 @@
     }
 
     .hero {
-      padding: 88px 0 62px;
+      padding: 72px 0 62px;
+    }
+
+    .hero-intro {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 34px 34px 38px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 38px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(139, 124, 255, 0.2), transparent 22rem),
+        radial-gradient(circle at 82% 26%, rgba(57, 213, 198, 0.16), transparent 20rem),
+        rgba(255, 255, 255, 0.045);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.18);
     }
 
     .eyebrow {
@@ -125,16 +140,17 @@
     }
 
     h1 {
-      max-width: 920px;
-      margin: 0;
-      font-size: clamp(2.7rem, 7vw, 6.25rem);
-      line-height: 0.94;
-      letter-spacing: -0.08em;
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(2.5rem, 5.35vw, 4.85rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      text-wrap: balance;
     }
 
     .lead {
       max-width: 760px;
-      margin: 26px 0 0;
+      margin: 24px auto 0;
       color: var(--muted);
       font-size: clamp(1.05rem, 2vw, 1.28rem);
     }
@@ -142,6 +158,7 @@
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 12px;
       margin-top: 34px;
     }
@@ -255,7 +272,6 @@
       width: 0;
       height: auto;
       display: block;
-      vertical-align: bottom;
     }
 
     .figure-strip img + img {
@@ -428,6 +444,18 @@
       margin-bottom: 0;
     }
 
+    .method-card-jump {
+      display: inline-flex;
+      margin-top: 18px;
+      color: #635bff;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .method-card-jump:hover {
+      text-decoration: underline;
+    }
+
     .results-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -529,7 +557,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 760px;
+      min-width: 960px;
       font-size: 0.95rem;
     }
 
@@ -579,8 +607,10 @@
 
     .paper-figure-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .paper-figure-card {
@@ -592,32 +622,32 @@
     }
 
     .paper-figure-card.wide {
-      grid-column: 1 / -1;
+      grid-column: auto;
     }
 
     .paper-figure-media {
-      overflow: hidden;
-      height: 520px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
       border-bottom: 1px solid #e8edf5;
       background: #f8fafc;
-    }
-
-    .paper-figure-card.wide .paper-figure-media {
-      height: 620px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 160px;
     }
 
     .paper-figure-media img,
     .paper-figure-media object {
       display: block;
       width: 100%;
-      height: 100%;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
       border: 0;
       background: #ffffff;
-    }
-
-    .paper-figure-media img {
-      object-fit: contain;
       padding: 18px;
+      box-sizing: border-box;
+      image-rendering: auto;
     }
 
     .paper-figure-body {
@@ -630,6 +660,16 @@
 
     .paper-figure-body p {
       margin: 0;
+    }
+
+    .paper-figure-body p + p {
+      margin-top: 12px;
+    }
+
+    .paper-figure-body .figure-context {
+      color: #5e6a7f;
+      font-size: 0.98rem;
+      line-height: 1.58;
     }
 
     .figure-link {
@@ -713,11 +753,7 @@
       }
 
       .paper-figure-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .paper-figure-card.wide {
-        grid-column: span 1;
+        max-width: min(900px, 100%);
       }
 
       .figure-strip-wrap {
@@ -749,7 +785,17 @@
       }
 
       .hero {
-        padding-top: 54px;
+        padding-top: 46px;
+      }
+
+      .hero-intro {
+        padding: 26px 18px 30px;
+        border-radius: 28px;
+      }
+
+      h1 {
+        font-size: clamp(2.28rem, 11.8vw, 3.65rem);
+        letter-spacing: -0.05em;
       }
 
       .quick-stats,
@@ -772,10 +818,6 @@
         margin-top: 14px;
       }
 
-      .paper-figure-media,
-      .paper-figure-card.wide .paper-figure-media {
-        height: 440px;
-      }
     }
   </style>
 </head>
@@ -788,7 +830,7 @@
       </a>
       <div class="nav-links">
         <a href="#insights">Key Takeaways</a>
-        <a href="#figure1">Figure 1</a>
+        <a href="#gallery">Gallery</a>
         <a href="#method">Method</a>
         <a href="#paper-figures">Paper Figures</a>
         <a href="#results">Results</a>
@@ -798,25 +840,25 @@
 
   <div id="top" class="hero">
     <div class="shell">
-      <h1>Unlocking Complex Visual Generation via Closed-Loop Verified Reasoning</h1>
-      <p class="lead">
-        CLVR turns complex text-to-image generation into an iterative visual reasoning loop:
-        plan, generate, verify, correct, and stop when the image satisfies the prompt.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#results">Scan the Evidence</a>
-        <a class="button" href="#method">How It Works</a>
+      <div class="hero-intro">
+        <h1>Unlocking Complex Visual Generation via Closed-Loop Verified Reasoning</h1>
+        <p class="lead">
+          CLVR turns complex text-to-image generation into an iterative visual reasoning loop:
+          plan, generate, verify, correct, and stop when the image satisfies the prompt.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#results">Scan the Results</a>
+          <a class="button" href="#method">How It Works</a>
+        </div>
       </div>
 
-      <figure id="figure1" class="hero-gallery" aria-label="Paper Figure 1 qualitative results">
+      <figure id="gallery" class="hero-gallery" aria-label="Paper Figure 1 qualitative results">
         <div class="hero-gallery-head">
           <figcaption>
-            <span class="figure-label">Figure 1 · Qualitative Results</span>
+            <span class="figure-label">Gallery · Qualitative Results</span>
             <h2>CLVR handles dense PRISM prompts with iterative visual reasoning.</h2>
           </figcaption>
           <p>
-            <!-- The first figure is kept near the top because it communicates the paper's central promise faster than text:
-            complex prompts become controllable through verified multi-step generation. -->
           </p>
         </div>
         <div class="figure-strip-wrap">
@@ -858,9 +900,6 @@
             <p class="kicker">Key Takeaways</p>
             <h2>Read the paper in one minute.</h2>
           </div>
-          <p class="section-copy">
-            The page intentionally keeps only the claims a reader should remember after a fast skim.
-          </p>
         </div>
 
         <div class="insight-grid">
@@ -868,11 +907,12 @@
             <div class="number">1</div>
             <h3>Single-step generation hits a complexity ceiling.</h3>
             <p>As prompts become dense with entities, relations, and constraints, simply scaling the backbone gives diminishing returns.</p>
+            <a class="method-card-jump" href="#fig-semantic-probe">Semantic complexity scaling probe</a>
           </article>
           <article class="insight-card">
             <div class="number">2</div>
             <h3>Closed-loop reasoning breaks hard prompts into recoverable steps.</h3>
-            <p>CLVR uses visual feedback after each generation action, so errors can be detected and corrected before they cascade.</p>
+            <p>CLVR enables systematic task decomposition, breaking complex prompts into manageable sub-tasks to avoid the pitfalls of one-shot generation and raise the capacity ceiling, while using iterative visual self-correction to ensure each step remains within reliable boundaries.</p>
           </article>
           <article class="insight-card">
             <div class="number">3</div>
@@ -888,7 +928,7 @@
       </div>
     </section>
 
-    <section id="showcase">
+    <!-- <section id="showcase">
       <div class="shell">
         <div class="section-head">
           <div>
@@ -912,7 +952,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section id="method">
       <div class="shell">
@@ -922,7 +962,7 @@
             <h2>The system is organized around four compact ideas.</h2>
           </div>
           <p class="section-copy">
-            Each component exists to remove a specific bottleneck in reasoning-based image generation.
+            Each component addresses a specific bottleneck in reasoning-based image generation.
           </p>
         </div>
 
@@ -931,21 +971,25 @@
             <p class="label">Data</p>
             <h3>Verified trajectory synthesis</h3>
             <p>A state-constrained controller generates visual reasoning trajectories, with step-level validation and global A/B judging against single-step baselines.</p>
+            <a class="method-card-jump" href="#fig-verified-data">See data pipeline figure</a>
           </article>
           <article class="method-card">
             <p class="label">Training</p>
             <h3>Proxy Prompt RL</h3>
             <p>A teacher VLM converts long interleaved histories into explicit text and reference-image rewards, enabling step-wise diffusion optimization.</p>
+            <a class="method-card-jump" href="#fig-clvr-overview">See framework overview</a>
           </article>
           <article class="method-card">
             <p class="label">Inference</p>
             <h3>Trajectory-accumulative conditioning</h3>
             <p>The diffusion model receives the evolving reasoning trace, preserving global constraints across multiple rounds of generation and editing.</p>
+            <a class="method-card-jump" href="#fig-inference-cot">See step-by-step inference figure</a>
           </article>
           <article class="method-card">
             <p class="label">Deployment</p>
             <h3>&Delta;-Space Weight Merge</h3>
             <p>Alignment and distillation increments are merged in weight space, keeping reasoning ability while inheriting fast 4-step decoding.</p>
+            <a class="method-card-jump" href="#dswm-efficiency">See DSWM efficiency table</a>
           </article>
         </div>
       </div>
@@ -953,80 +997,70 @@
 
     <section id="paper-figures">
       <div class="shell">
-        <div class="section-head">
-          <div>
-            <p class="kicker">Paper Figures</p>
-            <h2>Original figures reused from the paper.</h2>
-          </div>
-          <p class="section-copy">
-            These panels are not redrawn for the webpage. They directly reuse the figures included in the LaTeX manuscript.
-          </p>
-        </div>
-
         <div class="paper-figure-grid">
-          <article class="paper-figure-card wide">
-            <div class="paper-figure-media">
-              <img src="assets/figures/overall_pipeline_draft4.png" alt="CLVR framework overview">
+          <article id="fig-clvr-overview" class="paper-figure-card">
+            <div class="paper-figure-media" aria-label="CLVR framework overview (SVG)">
+              <img src="assets/figures/svg/overall_pipeline_draft4.svg" alt="CLVR framework overview diagram" width="1200" height="680" loading="lazy" decoding="async">
             </div>
             <div class="paper-figure-body">
               <h3>CLVR framework overview</h3>
-              <p>Pipeline overview covering SFT/PPRL, closed-loop inference, and &Delta;-Space Weight Merge.</p>
-              <a class="figure-link" href="assets/figures/overall_pipeline_draft4.pdf">Open figure</a>
+              <p>The CLVR framework consists of three main components: (1) a training pipeline utilizing Supervised Fine-Tuning (SFT) and Proxy Prompt Reinforcement Learning (PPRL) to align the model with multi-step reasoning; (2) a closed-loop inference framework where the controller iteratively revisits the canvas; and (3) a &Delta;-Space Weight Merge algorithm that fuses alignment gains with distillation priors for efficient 4-step decoding.</p>
+              <a class="figure-link" href="assets/figures/overall_pipeline_draft4.pdf" target="_blank" rel="noopener">Open source PDF</a>
             </div>
           </article>
 
-          <article class="paper-figure-card">
-            <div class="paper-figure-media">
-              <img src="assets/figures/datapipeline_2_simple.png" alt="CLVR data synthesis pipeline">
+          <article id="fig-verified-data" class="paper-figure-card">
+            <div class="paper-figure-media" aria-label="CLVR data synthesis pipeline (SVG)">
+              <img src="assets/figures/svg/datapipeline_2_simple.svg" alt="CLVR verified data synthesis pipeline" width="1200" height="700" loading="lazy" decoding="async">
             </div>
             <div class="paper-figure-body">
               <h3>Verified data production</h3>
-              <p>Perceive-Reason-Act data synthesis with step-level visual verification.</p>
-              <a class="figure-link" href="assets/figures/datapipeline_2_simple.pdf">Open figure</a>
+              <p>The data synthesis pipeline follows a Perceive-Reason-Act workflow orchestrated by a state-constrained agentic controller (Gemini 2.5 Pro). It generates high-fidelity reasoning trajectories through a dual-track verification mechanism: passive verification acts as a step-level gatekeeper to discard execution errors, while active verification serves as a global error-correction hub to detect and resolve semantic gaps between the canvas and the user prompt.</p>
+              <a class="figure-link" href="assets/figures/datapipeline_2_simple.pdf" target="_blank" rel="noopener">Open source PDF</a>
             </div>
           </article>
 
-          <article class="paper-figure-card">
-            <div class="paper-figure-media">
-              <img src="assets/figures/trace_showcase.png" alt="Training trajectory showcase">
+          <article id="fig-trace-showcase" class="paper-figure-card">
+            <div class="paper-figure-media" aria-label="Training trajectory showcase (SVG)">
+              <img src="assets/figures/svg/trace_showcase.svg" alt="Example verified training trajectory with self-correction" width="1000" height="900" loading="lazy" decoding="async">
             </div>
             <div class="paper-figure-body">
               <h3>Trajectory data showcase</h3>
-              <p>Example synthesized trajectory showing visual feedback and self-correction.</p>
-              <a class="figure-link" href="assets/figures/trace_showcase.pdf">Open figure</a>
+              <p>A visualization of a verified reasoning trajectory synthesized by the data engine. In this example, the system first generates a base image, identifies a missing brand logo and adds it, and finally recognizes missing rear details to change the perspective to a rear three-quarter view. This demonstrates how the controller iteratively refines the image based on visual feedback until the final objective is met.</p>
+              <a class="figure-link" href="assets/figures/trace_showcase.pdf" target="_blank" rel="noopener">Open source PDF</a>
             </div>
           </article>
 
-          <article class="paper-figure-card wide">
-            <div class="paper-figure-media">
-              <img src="assets/figures/CoT_case_2.png" alt="Step-by-step CLVR inference case">
+          <article id="fig-inference-cot" class="paper-figure-card">
+            <div class="paper-figure-media" aria-label="Step-by-step CLVR inference case (SVG)">
+              <img src="assets/figures/svg/CoT_case_2.svg" alt="Step-by-step CLVR inference trajectory from sketch to final image" width="1200" height="620" loading="lazy" decoding="async">
             </div>
             <div class="paper-figure-body">
               <h3>Step-by-step inference trajectory</h3>
-              <p>CLVR inference case from concept initialization through environment, lighting, and final typographic integration.</p>
-              <a class="figure-link" href="assets/figures/CoT_case_2.pdf">Open figure</a>
+              <p>A real-world CLVR inference case showcasing the systematic execution of a complex prompt. The trajectory begins with concept initialization, followed by environment embedding, lighting and atmosphere refinement, and final typographic integration, resulting in a cohesive image that fulfills all complex requirements through accumulated reasoning steps.</p>
+              <a class="figure-link" href="assets/figures/CoT_case_2.pdf" target="_blank" rel="noopener">Open source PDF</a>
             </div>
           </article>
 
           <article class="paper-figure-card">
-            <div class="paper-figure-media">
-              <img src="assets/figures/compare_w_baseline.png" alt="CLVR comparison with baselines">
+            <div class="paper-figure-media" aria-label="CLVR comparison with baselines (SVG)">
+              <img src="assets/figures/svg/compare_w_baseline.svg" alt="Qualitative comparison of CLVR against baselines on challenging prompts" width="1200" height="900" loading="lazy" decoding="async">
             </div>
             <div class="paper-figure-body">
               <h3>Visual comparison with baselines</h3>
-              <p>Qualitative comparison against strong generation baselines on challenging prompts.</p>
-              <a class="figure-link" href="assets/figures/compare_w_baseline.pdf">Open figure</a>
+              <p>Qualitative comparisons between CLVR and strong baselines on challenging prompts. The results illustrate how single-step models often fail to satisfy all constraints (e.g., missed text, wrong object counts, or attribute drift), whereas CLVR's closed-loop approach approaches state-of-the-art proprietary instruction following by catching and correcting these failure modes.</p>
+              <a class="figure-link" href="assets/figures/compare_w_baseline.pdf" target="_blank" rel="noopener">Open source PDF</a>
             </div>
           </article>
 
-          <article class="paper-figure-card">
-            <div class="paper-figure-media">
-              <img src="assets/figures/fig_bc_v9_combined.png" alt="Semantic complexity scaling probe results">
+          <article id="fig-semantic-probe" class="paper-figure-card">
+            <div class="paper-figure-media" aria-label="Semantic complexity scaling probe (PNG)">
+              <img src="assets/figures/fig_bc_v9_combined.png" alt="Semantic complexity scaling probe: pass rate versus task complexity and AUC summary" width="4383" height="1504" loading="lazy" decoding="async">
             </div>
             <div class="paper-figure-body">
               <h3>Semantic complexity scaling probe</h3>
-              <p>Probe figure showing AUC pass and tier-wise degradation under increasing task complexity.</p>
-              <a class="figure-link" href="assets/figures/fig_bc_v9_combined.png">Open figure</a>
+              <p>Quantitative results of the semantic complexity probe diagnosing structural degradation in single-step generation. The probe stratifies prompts into ten complexity tiers <var>C</var><sub>task</sub>. The left plot shows that CLVR achieves a higher Area Under the Pass-Complexity Curve (AUC Pass) compared to single-step models of similar spectral capacity (<var>I</var><sub>eff</sub>). The right plot illustrates that while single-step models' performance drops sharply as task complexity increases, CLVR maintains a resilient pass rate across all tiers without expanding the backbone capacity.</p>
+              <a class="figure-link" href="assets/figures/fig_bc_v9_combined.png" target="_blank" rel="noopener">Open full-size PNG</a>
             </div>
           </article>
         </div>
@@ -1041,7 +1075,7 @@
             <h2>CLVR improves quality, robustness, and latency together.</h2>
           </div>
           <p class="section-copy">
-            Selected headline numbers from GenEval, WiseBench, PRISM, ImagineBench, and the semantic complexity probe.
+            Headline metrics across GenEval, GenEval++, WiseBench, PRISM, and ImagineBench, plus probe and ablations aligned with the manuscript tables.
           </p>
         </div>
 
@@ -1049,7 +1083,7 @@
           <article class="table-card">
             <div class="table-card-head">
               <h3>Main benchmark comparison</h3>
-              <p>Overall scores across the paper's core benchmarks. Higher is better.</p>
+              <p>Overall scores merged from the manuscript&rsquo;s benchmark tables. Em dash (—) means that benchmark was not reported for that model in the paper; CLVR deltas are vs. the matching FLUX.2 Klein base.</p>
             </div>
             <div class="table-wrap">
               <table aria-label="Main benchmark comparison">
@@ -1057,6 +1091,7 @@
                   <tr>
                     <th>Model</th>
                     <th>GenEval</th>
+                    <th>GenEval++</th>
                     <th>WiseBench</th>
                     <th>PRISM</th>
                     <th>ImagineBench</th>
@@ -1064,39 +1099,101 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>FLUX.2 4B base</td>
+                    <td>GPT-4o (reference)</td>
+                    <td>0.84</td>
+                    <td>0.739</td>
+                    <td>0.80</td>
+                    <td>86.3</td>
+                    <td>8.560</td>
+                  </tr>
+
+                  <tr>
+                    <td>FLUX.1-dev</td>
+                    <td>0.82</td>
+                    <td>0.314</td>
+                    <td>0.50</td>
+                    <td>73.9</td>
+                    <td>6.060</td>
+                  </tr>
+                  <tr>
+                    <td>SD3.5-Large</td>
+                    <td>0.71</td>
+                    <td>&mdash;</td>
+                    <td>0.46</td>
+                    <td>73.9</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td>Qwen-Image</td>
+                    <td>0.87</td>
+                    <td>&mdash;</td>
+                    <td>0.62</td>
+                    <td>79.9</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td>Uni-CoT</td>
+                    <td>0.83</td>
+                    <td>0.635</td>
+                    <td>0.65</td>
+                    <td>66.1</td>
+                    <td>7.747</td>
+                  </tr>
+                  <tr>
+                    <td>BAGEL-7B</td>
+                    <td>0.77</td>
+                    <td>0.371</td>
+                    <td>0.52</td>
+                    <td>65.1</td>
+                    <td>6.200</td>
+                  </tr>
+                  <tr>
+                    <td>T2I-R1</td>
+                    <td>&mdash;</td>
+                    <td>0.311</td>
+                    <td>0.54</td>
+                    <td>&mdash;</td>
+                    <td>6.780</td>
+                  </tr>
+                  <tr>
+                    <td>Janus-Pro</td>
+                    <td>0.80</td>
+                    <td>0.246</td>
+                    <td>&mdash;</td>
+                    <td>60.7</td>
+                    <td>6.220</td>
+                  </tr>
+                  <tr>
+                    <td>FLUX.2 4B [Klein] base</td>
                     <td>0.74</td>
+                    <td>0.375</td>
                     <td>0.44</td>
                     <td>65.7</td>
                     <td>6.267</td>
                   </tr>
                   <tr class="highlight">
-                    <td>CLVR 4B</td>
+                    <td>CLVR (4B)</td>
                     <td>0.87 <span class="delta">(+0.13)</span></td>
+                    <td>0.616 <span class="delta">(+0.241)</span></td>
                     <td>0.74 <span class="delta">(+0.30)</span></td>
                     <td>76.3 <span class="delta">(+10.6)</span></td>
                     <td>8.435 <span class="delta">(+2.168)</span></td>
                   </tr>
                   <tr>
-                    <td>FLUX.2 9B base</td>
+                    <td>FLUX.2 9B [Klein] base</td>
                     <td>0.80</td>
+                    <td>0.307</td>
                     <td>0.52</td>
                     <td>72.7</td>
                     <td>7.274</td>
                   </tr>
                   <tr class="highlight">
-                    <td>CLVR 9B</td>
+                    <td>CLVR (9B)</td>
                     <td>0.88 <span class="delta">(+0.08)</span></td>
+                    <td>0.689 <span class="delta">(+0.382)</span></td>
                     <td>0.76 <span class="delta">(+0.24)</span></td>
                     <td>82.1 <span class="delta">(+9.4)</span></td>
                     <td>8.830 <span class="delta">(+1.556)</span></td>
-                  </tr>
-                  <tr>
-                    <td>GPT-4o reference</td>
-                    <td>0.84</td>
-                    <td>0.80</td>
-                    <td>86.3</td>
-                    <td>8.560</td>
                   </tr>
                 </tbody>
               </table>
@@ -1106,7 +1203,7 @@
           <article class="table-card">
             <div class="table-card-head">
               <h3>Ablation: what contributes to the gain?</h3>
-              <p>GenEval ablation isolates closed-loop training, proxy-prompt RL, and DSWM deployment acceleration.</p>
+              <p>Main-paper GenEval breakdown on the <strong>non-distilled 4B base</strong>, isolating closed-loop training, PPRL, and DSWM (same rows as Table &ldquo;ablation for proposed techniques&rdquo;).</p>
             </div>
             <div class="table-wrap">
               <table aria-label="Ablation comparison">
@@ -1117,7 +1214,7 @@
                     <th>Position</th>
                     <th>Color Attr.</th>
                     <th>Overall</th>
-                    <th>Takeaway</th>
+                    <th>p.s</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1127,7 +1224,7 @@
                     <td>0.52</td>
                     <td>0.59</td>
                     <td>0.74</td>
-                    <td class="note-cell">Single-step baseline.</td>
+                    <td class="note-cell">Flux.2 baseline.</td>
                   </tr>
                   <tr>
                     <td>+ CLVR without PPRL</td>
@@ -1160,8 +1257,58 @@
 
           <article class="table-card">
             <div class="table-card-head">
+              <h3>Ablation: CLVR training recipe (4B distill)</h3>
+              <p>Condensed from the appendix ablation table: each row adds one training stage on top of the FLUX.2 4B distill baseline. It isolates (i) open-loop rewrite, (ii) VLM-only CLVR SFT, (iii) diffusion trajectory SFT, (iv) RL with vs. without proxy prompts.</p>
+            </div>
+            <div class="table-wrap">
+              <table aria-label="Ablation CLVR and PPRL training stages">
+                <thead>
+                  <tr>
+                    <th>Setting</th>
+                    <th>GenEval Overall</th>
+                    <th>WiseBench Overall</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>FLUX.2 4B Distill</td>
+                    <td>0.81</td>
+                    <td>0.48</td>
+                  </tr>
+                  <tr>
+                    <td>Distill + rewrite (Qwen3-VL, open-loop)</td>
+                    <td>0.78</td>
+                    <td>0.64</td>
+                  </tr>
+                  <tr>
+                    <td>+ CLVR (VLM SFT only)</td>
+                    <td>0.86</td>
+                    <td>0.65</td>
+                  </tr>
+                  <tr>
+                    <td>+ CLVR + diffusion SFT</td>
+                    <td>0.85</td>
+                    <td>0.62</td>
+                  </tr>
+                  <tr>
+                    <td>+ CLVR + diffusion SFT + simple RL</td>
+                    <td>0.84</td>
+                    <td>0.64</td>
+                  </tr>
+                  <tr class="highlight">
+                    <td>+ CLVR + diffusion SFT + PPRL</td>
+                    <td>0.87</td>
+                    <td>0.74</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="table-card">
+            <div class="table-card-head">
               <h3>Semantic complexity scaling probe</h3>
-              <p>CLVR raises pass-complexity AUC without increasing the FLUX.2 4B backbone capacity proxy.</p>
+              <p>Numeric counterpart to the probe figure: at matched DiT size, CLVR increases AUC<sub>pass</sub> while keeping the spectral capacity proxy <var>I</var><sub>eff</sub> unchanged&mdash;i.e., better tier-wise robustness without a wider backbone.</p>
             </div>
             <div class="table-wrap">
               <table aria-label="Semantic complexity scaling probe">
@@ -1221,7 +1368,7 @@
             </div>
           </article>
 
-          <article class="table-card">
+          <article id="dswm-efficiency" class="table-card">
             <div class="table-card-head">
               <h3>Inference efficiency with DSWM</h3>
               <p>
