@@ -722,6 +722,19 @@
       font-size: 0.94rem;
     }
 
+    footer .footer-arxiv {
+      display: block;
+      margin-top: 14px;
+      line-height: 1.55;
+    }
+
+    footer .footer-arxiv code {
+      font-size: 0.88em;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      background: rgba(15, 23, 42, 0.06);
+    }
+
     @media (max-width: 980px) {
       .quick-stats,
       .insight-grid,
@@ -822,6 +835,7 @@
   </style>
 </head>
 <body>
+  <!-- 上线前：全文搜索 XXXX.XXXXX 并替换为正式 arXiv 号（href 与页脚展示等一并更新）。 -->
   <header>
     <nav class="shell" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="CLVR project page">
@@ -834,6 +848,7 @@
         <a href="#method">Method</a>
         <a href="#paper-figures">Paper Figures</a>
         <a href="#results">Results</a>
+        <a href="https://arxiv.org/abs/2605.14876" target="_blank" rel="noopener">arXiv</a>
       </div>
     </nav>
   </header>
@@ -849,6 +864,7 @@
         <div class="hero-actions">
           <a class="button primary" href="#results">Scan the Results</a>
           <a class="button" href="#method">How It Works</a>
+          <a class="button" href="https://arxiv.org/abs/2605.14876" target="_blank" rel="noopener">arXiv (preprint)</a>
         </div>
       </div>
 
@@ -1037,7 +1053,7 @@
             </div>
             <div class="paper-figure-body">
               <h3>Step-by-step inference trajectory</h3>
-              <p>A real-world CLVR inference case showcasing the systematic execution of a complex prompt. The trajectory begins with concept initialization, followed by environment embedding, lighting and atmosphere refinement, and final typographic integration, resulting in a cohesive image that fulfills all complex requirements through accumulated reasoning steps.</p>
+              <p>A CLVR inference case of execution of a complex prompt. The trajectory begins with concept initialization, followed by environment embedding, lighting and atmosphere refinement, and final typographic integration, resulting in a cohesive image that fulfills all complex requirements through accumulated reasoning steps.</p>
               <a class="figure-link" href="assets/figures/CoT_case_2.pdf" target="_blank" rel="noopener">Open source PDF</a>
             </div>
           </article>
@@ -1456,6 +1472,11 @@
     <div class="shell">
       Project page for <strong>Unlocking Complex Visual Generation via Closed-Loop Verified Reasoning</strong>.
       Built as a static single-file page for GitHub Pages deployment.
+      <span class="footer-arxiv">
+        Preprint:
+        <a href="https://arxiv.org/abs/2605.14876" target="_blank" rel="noopener">arXiv:XXXX.XXXXX</a>
+        (replace <code>XXXX.XXXXX</code> with the assigned ID in the nav, hero button, and this line).
+      </span>
     </div>
   </footer>
 </body>
